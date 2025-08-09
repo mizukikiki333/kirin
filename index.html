@@ -3,334 +3,445 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>亜来株式会社 | 未来を創る、PCリボーンカンパニー</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <title>亜来株式会社 - 未来を創る、PCリボーンカンパニー</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Noto+Sans+JP:wght@300;400;700&display=swap');
+        :root {
+            --primary-color: #00f0ff; /* Cyber Blue */
+            --secondary-color: #ff00ff; /* Neon Magenta */
+            --dark-bg: #0a0a1a; /* Deep Space Blue */
+            --text-color: #e0e0e0;
+            --card-bg: rgba(15, 20, 40, 0.75);
+            --border-glow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color), 0 0 15px var(--primary-color);
+            --secondary-glow: 0 0 5px var(--secondary-color), 0 0 10px var(--secondary-color);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 240, 255, 0.1), transparent 30%),
+                radial-gradient(circle at 85% 30%, rgba(255, 0, 255, 0.1), transparent 30%);
+            animation: fadeIn 1.5s ease-in-out;
         }
-        header {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            padding: 1.5em 0;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.8em;
-            letter-spacing: 2px;
-            font-weight: 700;
-        }
-        header p {
-            font-size: 1.1em;
-            margin-top: 0.5em;
-        }
-        nav {
-            background-color: #34495e;
-            padding: 0.8em 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        nav a {
-            color: #ecf0f1;
-            text-decoration: none;
-            padding: 0 1.5em;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-            color: #1abc9c;
-        }
+
         .container {
-            max-width: 1100px;
-            margin: 2.5em auto;
-            padding: 0 2em;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        section {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            margin-bottom: 2.5em;
-            padding: 2.5em;
-        }
-        h2 {
-            font-size: 2.2em;
-            color: #2c3e50;
+
+        /* --- Header & Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            margin-bottom: 1.5em;
+            padding: 20px;
+            background: 
+                linear-gradient(rgba(10, 10, 26, 0.8), rgba(10, 10, 26, 1)),
+                url('https://images.unsplash.com/photo-1555066931-4365d1469c9b?q=80&w=2070&auto=format&fit=crop') center center/cover no-repeat;
             position: relative;
-            padding-bottom: 0.5em;
+            overflow: hidden;
         }
-        h2::after {
+        
+        .hero::before {
             content: '';
             position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: #1abc9c;
-            border-radius: 2px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0, 240, 255, 0.1), rgba(0, 240, 255, 0.1) 1px, transparent 1px, transparent 50px);
+            animation: scanline 20s linear infinite;
         }
-        h3 {
-            font-size: 1.6em;
-            color: #34495e;
-            margin-top: 1.8em;
-            margin-bottom: 1em;
-            border-left: 5px solid #1abc9c;
-            padding-left: 10px;
+
+        @keyframes scanline {
+            from { background-position: 0 0; }
+            to { background-position: 0 -100vh; }
         }
-        .company-details p {
-            margin-bottom: 0.8em;
-            font-size: 1.05em;
+
+        .hero-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 8vw, 4.5rem);
+            color: #fff;
+            text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 40px var(--primary-color), 0 0 60px var(--secondary-color);
+            margin-bottom: 10px;
+            animation: flicker 3s infinite alternate;
+            letter-spacing: 2px;
         }
-        .company-details strong {
-            display: inline-block;
-            width: 150px;
-            color: #34495e;
+        
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% { text-shadow: 0 0 8px #fff, 0 0 15px var(--primary-color), 0 0 30px var(--primary-color); }
+            20%, 24%, 55% { text-shadow: none; }
         }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--primary-color);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            color: var(--primary-color);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            cursor: default;
+        }
+        .scroll-down::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 40px;
+            background: var(--primary-color);
+            margin: 10px auto 0;
+            animation: scroll-indicator 2s infinite;
+        }
+
+        @keyframes scroll-indicator {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            51% { transform: scaleY(1); transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
+        }
+        
+        /* --- Sticky Navigation --- */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px 0;
+            text-align: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        .sticky-nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 700;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .sticky-nav a:hover {
+            color: var(--primary-color);
+            text-shadow: 0 0 5px var(--primary-color);
+        }
+
+        /* --- Section Styles --- */
+        .section {
+            padding: 80px 20px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            text-shadow: var(--border-glow);
+        }
+        
+        /* --- Slogan Section --- */
+        .slogan { text-align: center; }
+        .slogan h2 { font-size: 2.2rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+        .slogan p { font-size: 1.5rem; color: var(--primary-color); font-weight: 400; }
+
+        /* --- About Section --- */
+        .about-card {
+            background: var(--card-bg);
+            border: 1px solid var(--primary-color);
+            padding: 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .about-card:hover { transform: translateY(-10px); box-shadow: var(--border-glow); }
+        .about-card p { font-size: 1.1rem; line-height: 1.8; max-width: 800px; margin: 0 auto; text-align: center; }
+        
+        /* --- Product Section --- */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5em;
-            margin-top: 2em;
+            gap: 30px;
         }
         .product-card {
-            background-color: #fcfcfc;
-            border: 1px solid #eee;
+            background: var(--card-bg);
+            border: 1px solid var(--primary-color);
             border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-        }
-        .product-card img {
-            max-width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 1em;
-        }
-        .product-card-content {
-            padding: 0 1.5em 1.5em;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .product-card h4 {
-            font-size: 1.4em;
-            color: #2c3e50;
-            margin-bottom: 0.8em;
-        }
-        .product-card p {
-            font-size: 0.95em;
-            color: #555;
-            margin-bottom: 1em;
-        }
-        .product-card .price {
-            font-size: 1.8em;
-            color: #e74c3c;
-            font-weight: bold;
-            display: block;
-            margin-top: 1em;
-        }
-        .btn {
+        .product-card:hover { transform: translateY(-10px); box-shadow: var(--border-glow); }
+        .product-card img { width: 100%; height: 220px; object-fit: cover; }
+        .product-card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .product-card h4 { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; color: var(--primary-color); margin-bottom: 15px; }
+        .product-card .spec { font-size: 1rem; margin-bottom: 20px; }
+        .product-card .price { font-size: 2rem; font-weight: 700; color: var(--secondary-color); text-shadow: var(--secondary-glow); margin: auto 0 20px 0; }
+        .product-btn {
             display: inline-block;
-            background-color: #1abc9c;
-            color: #fff;
-            padding: 0.9em 2em;
-            border-radius: 6px;
-            text-decoration: none;
-            margin-top: 1.5em;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-        }
-        .btn:hover {
-            background-color: #16a085;
-        }
-        .feature-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 1em;
-        }
-        .feature-list li {
-            background: #e9f7f0;
-            margin-bottom: 0.5em;
-            padding: 0.8em 1em;
-            border-left: 4px solid #1abc9c;
+            background-color: transparent;
+            color: var(--primary-color);
+            padding: 10px 20px;
             border-radius: 5px;
-            font-size: 0.95em;
-            color: #444;
+            border: 2px solid var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
         }
-        footer {
-            background-color: #2c3e50;
-            color: #ecf0f1;
+        .product-btn:hover { background-color: var(--primary-color); color: var(--dark-bg); box-shadow: var(--border-glow); }
+
+        /* --- Features Section --- */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .feature-item {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 0, 255, 0.5);
+            padding: 30px 20px;
             text-align: center;
-            padding: 2.5em 0;
-            margin-top: 3em;
-            font-size: 0.9em;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
         }
-        footer p {
-            margin: 0.5em 0;
+        .feature-item:hover { border-color: var(--secondary-color); transform: scale(1.05); }
+        .feature-icon { font-size: 3rem; color: var(--secondary-color); margin-bottom: 20px; text-shadow: 0 0 10px var(--secondary-color); }
+        .feature-item h3 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
+        .feature-item p { font-size: 1rem; line-height: 1.6; }
+        
+        /* --- Company Info Section --- */
+        .info-table {
+            background: var(--card-bg);
+            border: 1px solid var(--primary-color);
+            padding: 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            max-width: 800px;
+            margin: 0 auto;
         }
+        .info-row { display: flex; padding: 15px 0; border-bottom: 1px solid rgba(0, 240, 255, 0.1); }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { width: 30%; min-width: 150px; font-weight: 700; color: var(--primary-color); }
+        .info-data { width: 70%; }
+        
+        /* --- Contact Form Section --- */
+        .contact-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--primary-color);
+            padding: 40px;
+            border-radius: 10px;
+        }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; font-weight: 700; color: var(--primary-color); margin-bottom: 10px; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: var(--border-glow);
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #fff;
+            box-shadow: var(--border-glow);
+        }
+
+
+        /* --- Footer --- */
+        footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #aaa; background-color: #050510; border-top: 1px solid rgba(0, 240, 255, 0.2);}
     </style>
 </head>
 <body>
-    <header>
-        <h1>亜来株式会社</h1>
-        <p>未来を創る、PCリボーンカンパニー</p>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-logo">亜来株式会社</h1>
+            <p class="hero-subtitle">未来を創る、PCリボーンカンパニー</p>
+        </div>
+        <a href="#nav-menu" class="scroll-down">SCROLL</a>
     </header>
 
-    <nav>
-        <a href="#company">会社概要</a>
-        <a href="#about">事業概要</a>
-        <a href="#products">製品ラインナップ</a>
-        <a href="#features">サーバーリボーンの強み</a>
-        <a href="#contact">お問い合わせ</a>
+    <nav id="nav-menu" class="sticky-nav">
+        <a href="#concept">CONCEPT</a>
+        <a href="#products">PRODUCTS</a>
+        <a href="#strengths">STRENGTHS</a>
+        <a href="#company">COMPANY</a>
+        <a href="#contact">CONTACT</a>
     </nav>
 
-    <div class="container">
-        <section id="company">
-            <h2>会社概要</h2>
-            <div class="company-details">
-                <p><strong>法人名:</strong> 亜来株式会社</p>
-                <p><strong>住所:</strong> 〒653-0021 神戸市長田区梅ヶ香町1丁目16番11号</p>
-                <p><strong>設立:</strong> 2025年7月1日</p>
-                <p><strong>電話番号:</strong> 078-763-8042</p>
-                <p><strong>古物商許可番号:</strong> 第631152500028号</p>
-                <p><strong>事業内容:</strong> 中古PC・PCパーツの売買、リサイクル、再生</p>
+    <main>
+        <section class="section slogan">
+            <div class="container">
+                <h2>Reborn PC for a Reborn Society</h2>
+                <p>再生PCで社会を再生する</p>
             </div>
         </section>
 
-        <section id="about">
-            <h2>事業概要</h2>
-            <p>当社、亜来株式会社は、「Reborn PC for a Reborn Society - 再生PCで社会を再生する」をスローガンに掲げています。廃棄される運命にあった中古PCやパーツに新たな命を吹き込み、高性能・高デザイン性の製品として生まれ変わらせることで、資源の有効活用と環境負荷の低減に貢献します。</p>
-            <p style="margin-top: 1em;">特に、都市部の若者層に焦点を当て、スペース効率に優れたmATX/ITXサイズのPCに特化。最新のARGBパーツや高性能クーラーを組み込むことで、単なるリサイクル品ではない、所有する喜びを感じられる魅力的なPCを提供します。私たちは、技術とデザインを通じて、持続可能な未来への貢献を目指します。</p>
+        <section id="concept" class="section">
+            <div class="container">
+                <h2 class="section-title">CONCEPT</h2>
+                <div class="about-card">
+                    <p>当社、亜来株式会社は、廃棄される運命にあった中古PCやパーツに新たな命を吹き込み、高性能・高デザイン性の製品として生まれ変わらせることで、資源の有効活用と環境負荷の低減に貢献します。特に、都市部の若者層に焦点を当て、スペース効率に優れたPCに特化。最新のARGBパーツや高性能クーラーを組み込むことで、単なるリサイクル品ではない、所有する喜びを感じられる魅力的なPCを提供します。私たちは、技術とデザインを通じて、持続可能な未来への貢献を目指します。</p>
+                </div>
+            </div>
         </section>
 
-        <section id="products">
-            <h2>製品ラインナップ</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="https://i.imgur.com/kG5CO0X.png" alt="低配置ITX PC">
-                    <div class="product-card-content">
-                        <h4>低配置PC</h4>
-                        <p>CPU: Xeon E3-1270 v6 / GPU: GTX 1650</p>
-                        <ul class="feature-list">
-                            <li>コストパフォーマンス重視の入門モデル</li>
-                            <li>コンパクトなITXフォームファクター</li>
-                            <li>日常使いや軽作業に最適</li>
-                        </ul>
-                        <span class="price">50,000円</span>
-                        <a href="#contact" class="btn">詳細を見る</a>
+        <section id="products" class="section">
+            <div class="container">
+                <h2 class="section-title">PRODUCTS</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://i.ibb.co/hFN4gctp/IMG-0183.jpg" alt="低配置MATX PC">
+                        <div class="product-card-content">
+                            <h4>ENTRY MODEL</h4>
+                            <p class="spec">CPU: Xeon E3-1270 v6<br>GPU: GTX 1650</p>
+                            <span class="price">¥50,000</span>
+                            <a href="#contact" class="product-btn">購入相談</a>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card">
-                    <img src="https://i.imgur.com/nHqwUy7.jpeg" alt="中配置MATX PC">
-                    <div class="product-card-content">
-                        <h4>中配置PC</h4>
-                        <p>CPU: Ryzen 5 5500 / GPU: RTX 2070 Super</p>
-                        <ul class="feature-list">
-                            <li>ゲーミングやクリエイティブ作業に対応</li>
-                            <li>mATXサイズで拡張性も確保</li>
-                            <li>RGBライティングでデザイン性も追求</li>
-                        </ul>
-                        <span class="price">80,000円</span>
-                        <a href="#contact" class="btn">詳細を見る</a>
+                    <div class="product-card">
+                        <img src="https://i.ibb.co/xqDWR1BT/IMG-0177.jpg" alt="中配置MATX PC">
+                        <div class="product-card-content">
+                            <h4>GAMING MODEL</h4>
+                            <p class="spec">CPU: Ryzen 5 5500<br>GPU: RTX 2070 Super</p>
+                            <span class="price">¥80,000</span>
+                            <a href="#contact" class="product-btn">購入相談</a>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card">
-                    <img src="https://i.imgur.com/lPD90FX.png" alt="高配置MATX海景房PC">
-                    <div class="product-card-content">
-                        <h4>高配置PC</h4>
-                        <p>CPU: i5-12400F / GPU: RTX 3080</p>
-                        <ul class="feature-list">
-                            <li>本格的なゲームや高負荷作業に対応</li>
-                            <li>海景房ケースと水冷で冷却性・デザイン性抜群</li>
-                            <li>鮮やかなRGBライティング</li>
-                        </ul>
-                        <span class="price">150,000円</span>
-                        <a href="#contact" class="btn">詳細を見る</a>
+                    <div class="product-card">
+                        <img src="https://i.ibb.co/Dy98G9g/IMG-0181.jpg" alt="高配置MATX海景房PC">
+                        <div class="product-card-content">
+                            <h4>PRO MODEL</h4>
+                            <p class="spec">CPU: i5-12400F<br>GPU: RTX 3080</p>
+                            <span class="price">¥150,000</span>
+                            <a href="#contact" class="product-btn">購入相談</a>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card">
-                    <img src="https://i.imgur.com/i3FrAaI.png" alt="超高配置MATX海景房PC">
-                    <div class="product-card-content">
-                        <h4>超高配置PC</h4>
-                        <p>CPU: i7-13700 / GPU: RTX 4080</p>
-                        <ul class="feature-list">
-                            <li>プロレベルの性能を追求</li>
-                            <li>究極のゲーミング・クリエイティブ体験</li>
-                            <li>最新水冷システムと圧倒的なRGB演出</li>
-                        </ul>
-                        <span class="price">280,000円</span>
-                        <a href="#contact" class="btn">詳細を見る</a>
+                    <div class="product-card">
+                        <img src="https://i.ibb.co/C3X5278j/IMG-0176.jpg" alt="超高配置MATX海景房PC">
+                        <div class="product-card-content">
+                            <h4>ULTIMATE MODEL</h4>
+                            <p class="spec">CPU: i7-13700<br>GPU: RTX 4080</p>
+                            <span class="price">¥280,000</span>
+                            <a href="#contact" class="product-btn">購入相談</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="features">
-            <h2>サーバーリボーンの強み</h2>
-            <ul class="feature-list">
-                <li><strong>圧倒的なコストパフォーマンス：</strong> 中古部品の活用により、競合（メルカリ/ヤフオク）より10-20%安価な価格を実現。</li>
-                <li><strong>高性能・高デザイン性：</strong> 廃品回収品を再利用しつつ、ARGBパーツや高級CPUクーラーで外観を強化。特にmATX/ITXに特化し、省スペースでスタイリッシュなPCを提供。</li>
-                <li><strong>環境に優しいサステナブルな事業：</strong> 資源の有効活用を通じて、環境負荷の低減に貢献します。</li>
-                <li><strong>安心の1ヶ月保証：</strong> すべてのPCに1ヶ月間の製品保証をお付けしており、安心してご利用いただけます。</li>
-                <li><strong>ユニークな商品ラインナップ：</strong> 特に痛PCケース（中配1,500円、高配2,000円、超高配4,500円）や高級CPUクーラーを取り入れ、他にはない個性を演出します。</li>
-            </ul>
+        <section id="strengths" class="section">
+            <div class="container">
+                <h2 class="section-title">OUR STRENGTHS</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">💰</div>
+                        <h3>圧倒的な価格性能比</h3>
+                        <p>中古部品の戦略的活用により、市場価格より10-20%安価な価格を実現します。</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💎</div>
+                        <h3>デザインと性能の両立</h3>
+                        <p>mATX/ITXケースに特化し、ARGBパーツや高性能クーラーで最高の体験を提供します。</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>安心の製品保証</h3>
+                        <p>全てのPCに1ヶ月の動作保証付き。購入後も安心してご利用いただけます。</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">♻️</div>
+                        <h3>サステナビリティ</h3>
+                        <p>リサイクルと再生を通じて、環境負荷を低減。持続可能な社会の実現に貢献します。</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="contact">
-            <h2>お問い合わせ</h2>
-            <p style="text-align: center; font-size: 1.1em; margin-bottom: 1.5em;">
-                ご質問やご相談がありましたら、お気軽にお問い合わせください。<br>
-                以下のフォーム、またはメールにてご連絡いただけます。
-            </p>
-            <form action="#" method="POST" class="max-w-md mx-auto bg-gray-50 p-6 rounded-lg shadow-md">
-                <div class="mb-4">
-                    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">お名前:</label>
-                    <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        <section id="company" class="section">
+            <div class="container">
+                <h2 class="section-title">COMPANY INFO</h2>
+                <div class="info-table">
+                    <div class="info-row"><span class="info-label">法人名</span><span class="info-data">亜来株式会社</span></div>
+                    <div class="info-row"><span class="info-label">住所</span><span class="info-data">〒653-0021 神戸市長田区梅ヶ香町1丁目16番11号</span></div>
+                    <div class="info-row"><span class="info-label">設立</span><span class="info-data">2025年7月1日</span></div>
+                    <div class="info-row"><span class="info-label">電話番号</span><span class="info-data">078-763-8042</span></div>
+                    <div class="info-row"><span class="info-label">古物商許可番号</span><span class="info-data">第631152500028号</span></div>
+                    <div class="info-row"><span class="info-label">事業内容</span><span class="info-data">中古PC・PCパーツの売買、リサイクル、再生</span></div>
                 </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">メールアドレス:</label>
-                    <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-                </div>
-                <div class="mb-6">
-                    <label for="message" class="block text-gray-700 text-sm font-bold mb-2">お問い合わせ内容:</label>
-                    <textarea id="message" name="message" rows="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></textarea>
-                </div>
-                <div class="flex items-center justify-center">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
-                        送信
-                    </button>
-                </div>
-            </form>
-            <p style="text-align: center; margin-top: 1.5em; font-size: 1.1em;">
-                メール: info@server-reborn.jp
-            </p>
+            </div>
         </section>
-    </div>
+
+        <section id="contact" class="section">
+             <div class="container">
+                <h2 class="section-title">CONTACT</h2>
+                <form action="#" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">お名前:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">お問い合わせ内容:</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">送信</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
 
     <footer>
-        <p>© 2025 亜来株式会社. All Rights Reserved.</p>
-        <p>資源を再利用し、新しい価値を創造します。</p>
+        <p>&copy; 2025 亜来株式会社. All Rights Reserved.</p>
     </footer>
+
 </body>
 </html>
